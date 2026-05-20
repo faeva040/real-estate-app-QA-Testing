@@ -1,0 +1,11 @@
+Issue Key,Issue Type,Summary,Status,Priority,Assignee,Reporter,Description,Acceptance Criteria,Story Points
+PROP-101,Epic,Advanced Property Search,IN PROGRESS,Highest,DevTeam,QA Lead,"As a user, I want to search for properties using complex filters.",,
+PROP-102,Story,Filter by Price and Location,DONE,Highest,Dev_A,QA Lead,"As a user, I want to filter by min/max price and city.",1. Results must fall within price range. 2. Results must match city.,5
+PROP-103,Sub-task,Write Search Test Cases,DONE,Medium,QA_Engineer,QA Lead,Write manual BVA/EP cases for search filters.,Cases documented and approved,1
+PROP-104,Sub-task,Automate Search Flow,DONE,High,QA_Engineer,QA Lead,Write Cypress script for searching.,cypress script passes in CI,3
+PROP-201,Epic,Agent Listing Management,IN PROGRESS,Highest,DevTeam,QA Lead,"As an agent, I want to manage my property portfolio.",,
+PROP-202,Story,Submit New Property,DONE,Highest,Dev_B,QA Lead,"As an agent, I want to post a new listing.",1. Must upload at least 1 image. 2. Must fill price/location. 3. Status set to Pending Approval.,5
+PROP-203,Story,Approve Property (Admin),IN PROGRESS,High,Dev_A,QA Lead,"As admin, I want to approve/reject agent listings.",1. Admin sees pending queue. 2. Approval makes it public.,3
+PROP-204,Sub-task,API Test Property Submission,TODO,High,QA_Engineer,QA Lead,Test POST endpoint via Postman with image payload.,Tests return 201 and validate JSON schema.,2
+PROP-301,Epic,User Engagement,TODO,Medium,DevTeam,QA Lead,"Favorites, Saved Searches, Contact Agent.",,
+PROP-302,Story,Mortgage Calculator,TODO,Medium,Dev_C,QA Lead,"As a buyer, I want to estimate my monthly payments.",1. Input principal interest years. 2. Correct output.,3

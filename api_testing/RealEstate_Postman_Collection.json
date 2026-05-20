@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "PropTech API Suite",
+		"description": "API Test suite for Real Estate Backend.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Properties",
+			"item": [
+				{
+					"name": "Search Properties by Bounds",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response is an array of properties\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bounds\": {\n    \"north\": 40.77,\n    \"south\": 40.71,\n    \"east\": -73.93,\n    \"west\": -74.01\n  },\n  \"filters\": {\n    \"min_price\": 500000,\n    \"beds\": 2\n  }\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/properties/search",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "properties", "search"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Agents",
+			"item": [
+				{
+					"name": "Contact Agent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{ "key": "agent_id", "value": "12", "type": "text" },
+								{ "key": "name", "value": "John Doe", "type": "text" },
+								{ "key": "email", "value": "buyer@test.com", "type": "text" },
+								{ "key": "message", "value": "I am interested in this property.", "type": "text" }
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/agents/contact",
+							"host": ["{{BASE_URL}}"],
+							"path": ["api", "agents", "contact"]
+						}
+					}
+				}
+			]
+		}
+	]
+}

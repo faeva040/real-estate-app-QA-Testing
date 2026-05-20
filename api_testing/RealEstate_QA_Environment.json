@@ -1,0 +1,13 @@
+{
+	"id": "f8a9b0c1-2345-6789-abcd-ef0123456789",
+	"name": "PropTech QA Environment",
+	"values": [
+		{
+			"key": "BASE_URL",
+			"value": "http://127.0.0.1:8000",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment"
+}

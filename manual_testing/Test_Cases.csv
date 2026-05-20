@@ -1,0 +1,19 @@
+Test Case ID,Module,Sub-Module,Test Title,Pre-conditions,Test Steps,Test Data,Expected Result,Priority,Type
+TC_AUTH_001,Auth,Login,Verify successful Agent login,Agent account exists,1. Go to /login 2. Enter valid Agent Email/Pass 3. Submit,Email: agent@prop.com Pwd: pass123,Redirected to Agent Dashboard.,Highest,Functional
+TC_AUTH_002,Auth,RBAC,Verify Agent cannot access Admin Panel,Logged in as Agent,1. Navigate to /admin directly,,Redirected to 403 Forbidden or Dashboard.,Critical,Security
+TC_SRCH_001,Search,Filters,Verify filtering by Price Range,Properties exist in range,1. Go to Search 2. Set Min Price = $100k Max Price = $500k 3. Search,,Only properties between $100k and $500k are displayed.,High,Functional
+TC_SRCH_002,Search,Filters,Verify BVA on Price filter,None,1. Set Min Price = $0 Max Price = -$50 3. Search,,Validation error shown. Negative prices not accepted.,Medium,Boundary Value
+TC_SRCH_003,Search,Filters,Verify filtering by Beds and Baths,Properties exist,1. Select Beds: 3+ Baths: 2+ 2. Search,,Results show ONLY properties matching criteria.,High,Functional
+TC_SRCH_004,Search,Map,Verify Map boundary search updates results,None,1. Go to Map View 2. Zoom in/Drag map,,Property list dynamically updates to show only properties inside the visible map polygon.,High,Functional
+TC_PROP_001,Property,Details,Verify property detail page loads correctly,Property ID exists,1. Click on a property card,,Images description agent contact form and map load correctly.,Highest,Functional
+TC_PROP_002,Property,Mortgage,Verify Mortgage Calculator logic,On Property Page,1. Enter Principal: $300k Down: 20% Interest: 5% Years: 30 2. Calculate,,Estimated monthly payment is mathematically correct.,High,Functional
+TC_PROP_003,Property,Contact,Verify Contact Agent form submission,None,1. Fill Name/Email/Message on Agent form 2. Submit,,Success message shown. Email dispatched to Agent.,High,Functional
+TC_USR_001,Buyer,Favorites,Verify user can save property to favorites,Logged in as Buyer,1. Click Heart icon on property,,Property added to Saved list. Icon turns red.,Medium,Functional
+TC_USR_002,Buyer,Saved Search,Verify user can save search criteria for alerts,Logged in as Buyer,1. Perform search 2. Click 'Save Search',,Search is saved in dashboard. User will receive email alerts for new matches.,High,Functional
+TC_AGT_001,Agent,Submit,Verify Agent can submit new listing,Logged in as Agent,1. Go to Dashboard > Add Property 2. Fill all fields 3. Upload Images 4. Submit,,Property saved as 'Pending Approval'. Success message shown.,Highest,Functional
+TC_AGT_002,Agent,Submit,Verify required fields on listing submission,Logged in as Agent,1. Submit empty form,,Validation errors on Price Title Location Images.,High,Negative
+TC_AGT_003,Agent,Submit,Verify image upload restrictions,Logged in as Agent,1. Upload .txt file instead of image,,Validation error "Only images allowed".,Medium,Security
+TC_ADM_001,Admin,Approval,Verify Admin can approve a pending listing,Listing is Pending,1. Login as Admin 2. Go to Properties 3. Click Approve on a pending listing,,Status changes to Active. Property becomes searchable on frontend.,Highest,Functional
+TC_ADM_002,Admin,Users,Verify Admin can ban an abusive Agent,Agent exists,1. Go to Users 2. Ban Agent account,,Agent is immediately logged out and cannot log back in.,High,Functional
+TC_SEC_001,Security,IDOR,Verify Agent cannot edit another Agent's listing,Logged in as Agent A,1. Attempt POST to `/agent/property/edit/{Agent_B_Prop_ID}`,,403 Forbidden. Agent A cannot modify Agent B's property.,Critical,Security
+TC_SEC_002,Security,XSS,Verify XSS prevention on property description,Logged in as Agent,1. Submit property with `<script>alert(1)</script>` in description,,Payload is sanitized before rendering on the public details page.,Critical,Security
